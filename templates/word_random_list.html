@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="card">
+    <img class="card-img-top" style="width: 100%; height: 25vw; object-fit: cover;" src="{{ card.image.url }}" alt="Card image cap">
+    <div class="card-body">
+        <h5 class="card-title">{{ card.word }}</h5>
+        <p class="card-text">{{ card.transcription }}</p>
+        <p class="card-text">{{ card.translate }}</p>
+        <a class="carousel-control-prev" href="{% url 'rand_word' %}" role="button"
+           data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only"></span>
+        </a>
+        <a class="carousel-control-next" href="{% url 'rand_word' %}" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only"></span>
+        </a>
+    </div>
+</div>
+{% endblock content %}

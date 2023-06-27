@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% for card in object_list %}
+<div class="card">
+    <img class="card-img-top" style="width: 100%; height: 25vw; object-fit: cover;" src="{{ card.image.url }}"
+         alt="Card image cap">
+    <div class="card-body">
+        <h5 class="card-title">{{ card.word }}</h5>
+        <p class="card-text">{{ card.transcription }}</p>
+        <p class="card-text">{{ card.translate }}</p>
+        {% if page_obj.has_previous %}
+        <a class="carousel-control-prev" href="?page={{ page_obj.previous_page_number }}" role="button"
+           data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only"></span>
+        </a>
+        {% endif %}
+        {% if page_obj.has_next %}
+        <a class="carousel-control-next" href="?page={{ page_obj.next_page_number }}" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only"></span>
+        </a>
+        {% else %}
+        <a class="carousel-control-next" href="?page=1" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only"></span>
+        </a>
+        {% endif %}
+        <form action="{% url 'delete_student_word' card.pk %}" method="post">
+            {% csrf_token %}
+            <input class="btn btn-primary" type="submit" value="get new word">
+        </form>
+    </div>
+</div>
+{% endfor %}
+{% endblock content %}
+<!--<form action="{% url 'delete_student_word' card.pk %}" method="post">-->
+<!--    {% csrf_token %}-->
+<!--    <a type="submit" class="btn btn-primary">delete that word and get new</a>-->
+<!--</form>-->

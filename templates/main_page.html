@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+<ul class="nav flex-column">
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'rand_word' %}">random word mode</a>
+    </li>
+    {% if user.is_authenticated %}
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'words_mode' %}">learn 10 words mode</a>
+    </li>
+    {% else %}
+    <h2>REGISTER TO USE 10 WORDS MODE</h2>
+    {% endif %}
+</ul>
+{% endblock content %}
